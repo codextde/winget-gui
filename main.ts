@@ -7,6 +7,9 @@ import { autoUpdater } from 'electron-updater';
 
 import * as path from 'path';
 import * as url from 'url';
+import * as electronDl from 'electron-dl';
+
+electronDl();
 
 let type: string;
 if (process.platform === 'win32') {

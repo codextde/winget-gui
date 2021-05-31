@@ -25,10 +25,8 @@ export class AppComponent implements AfterViewInit {
   constructor(
     public electronService: ElectronService,
     public appService: AppService,
-    private modalCtrl: ModalController,
     private settingsService: SettingsService,
-    private ngxService: NgxService,
-    private matDialog: MatDialog
+    private ngxService: NgxService
   ) {
     console.log('AppConfig', AppConfig);
   }
