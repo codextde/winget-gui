@@ -2,6 +2,9 @@
 
 - https://github.com/microsoft/winget-cli
 
+![img1](https://i.imgur.com/gynJYzW.png)
+![img2](https://i.imgur.com/Oj09kgS.png)
+
 ## Contributing
 
 Feel free to Contribute

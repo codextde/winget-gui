@@ -154,8 +154,8 @@ ion-content {
   }
 }
 
-.main-area {
-  top: 30px;
+ion-app {
+  top: 30px !important;
   max-height: calc(100% - 30px);
 }
 

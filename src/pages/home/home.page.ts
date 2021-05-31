@@ -11,8 +11,11 @@ import { download } from 'electron-dl';
 })
 export class HomePage implements OnInit {
   packages;
+  installed;
   search = '';
   currentSearch = '';
+
+  mode = 'packages';
   constructor(
     private commandService: CommandService,
     private loadingCtrl: LoadingController,
@@ -20,6 +23,10 @@ export class HomePage implements OnInit {
     private http: HttpClient,
     private electronService: ElectronService
   ) {}
+
+  segmentChanged($event) {
+    this.mode = $event.detail.value;
+  }
   async ngOnInit() {
     const loading = await this.loadingCtrl.create();
     loading.present();
@@ -29,20 +36,18 @@ export class HomePage implements OnInit {
       .toPromise();
 
     const latest = data[0];
-    const asset = latest.assets.find((asset) =>
+    const asset: any = latest.assets.find((asset) =>
       asset.name.endsWith('.appxbundle')
     );
 
-    console.log('data', asset);
-
     try {
-      await this.electronService.electronDl.download(
-        this.electronService.window,
-        asset.browser_download_url
-      );
+      const tmp = this.electronService.app.getPath('temp');
 
       await this.commandService.powershell(
-        'Add-AppxPackage -Path "C:\\Path\\to\\File.Appx"'
+        `Invoke-WebRequest -Uri ${asset.browser_download_url} -OutFile ${tmp}\\winget.appxbundle`
+      );
+      await this.commandService.powershell(
+        `Add-AppxPackage -Path "${tmp}\\winget.appxbundle"`
       );
 
       let result: any = await this.commandService.powershell('winget install');
@@ -65,6 +70,33 @@ export class HomePage implements OnInit {
         loading.dismiss();
       }, 5000);
     }
+
+    this.loadInstalled();
+  }
+
+  async loadInstalled() {
+    const loading = await this.loadingCtrl.create();
+    loading.present();
+
+    try {
+      let result: any = await this.commandService.powershell('winget list');
+      result = result.split('----------------------------------').pop();
+      result = result
+        .split('\n')
+        .map((lines: any) => {
+          lines = lines
+            .replace(/ +(?= )/g, '\t')
+            .split('\t')
+            .map((line) => line.trim());
+          return lines;
+        })
+        .slice(1);
+
+      this.installed = result;
+    } catch (error) {
+    } finally {
+      loading.dismiss();
+    }
   }
 
   async install(_package) {
@@ -84,6 +116,30 @@ export class HomePage implements OnInit {
       const toast = await this.toastCtrl.create({
         duration: 5000,
         message: 'Package not installed!',
+      });
+      toast.present();
+    } finally {
+      loading.dismiss();
+    }
+  }
+
+  async uninstall(_package) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Package uninstalling ...',
+    });
+    try {
+      loading.present();
+      await this.commandService.powershell(`winget uninstall ${_package[1]}`);
+
+      const toast = await this.toastCtrl.create({
+        duration: 5000,
+        message: 'Package uninstalled!',
+      });
+      toast.present();
+    } catch (err) {
+      const toast = await this.toastCtrl.create({
+        duration: 5000,
+        message: 'Package not uninstalled!',
       });
       toast.present();
     } finally {
