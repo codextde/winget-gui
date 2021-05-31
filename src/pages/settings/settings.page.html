@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> {{'Settings'| translate}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div
+    class="
+      box
+      flex flex-col
+      shadow-xl
+      rounded-xl
+      mt-3
+      overflow-hidden
+      mb-5
+      bg-white
+      p-3
+    "
+  >
+    <ion-item lines="none">
+      <ion-checkbox
+        [(ngModel)]="autoStartEnabled"
+        (ngModelChange)="changeAutoStart()"
+        slot="start"
+      ></ion-checkbox>
+      <ion-label>{{'Autostart' |translate}}</ion-label>
+    </ion-item>
+
+    <ion-item
+      lines="none"
+      class="language"
+      button
+      (click)="selectLanguage($event)"
+    >
+      <ion-label> {{'Language' |translate}} </ion-label>
+      <span slot="end">
+        <img
+          *ngIf="settingsService.language.code == 'de'"
+          src="./assets/icons/DE.png"
+        />
+        <img
+          *ngIf="settingsService.language.code == 'en'"
+          src="./assets/icons/US.png"
+        />
+      </span>
+    </ion-item>
+  </div>
+</ion-content>

@@ -1,0 +1,61 @@
+{
+  "productName": "Windows Package Manager GUI",
+  "appId": "de.codext.winget-gui",
+  "directories": {
+    "output": "release/"
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "https://ftp.codext.de/winget-gui/released/"
+    }
+  ],
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!stuff/",
+    "!socketio-node/",
+    "!old/",
+    "!.github",
+    "!.vscode",
+    "!.code-workspace",
+    "!.npmrc",
+    "!*.md",
+    "!package.json",
+    "!package-lock.json",
+    "!src/",
+    "!e2e/",
+    "!hooks/",
+    "!_config.yml",
+    "!angular.json",
+    "!tsconfig*.json",
+    "!tslint.json",
+    "!.eslintrc.json",
+    "!karma.conf.js",
+    "!angular.webpack.js",
+    "!*.map"
+  ],
+  "win": {
+    "icon": "dist/assets/icons",
+    "target": ["portable"]
+  },
+  "nsis": {
+    "allowElevation": true,
+    "deleteAppDataOnUninstall": true,
+    "oneClick": true,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": false,
+    "runAfterFinish": true,
+    "createStartMenuShortcut": true,
+    "createDesktopShortcut": true
+  },
+  "portable": {},
+  "mac": {
+    "icon": "dist/assets/icons",
+    "target": ["dmg"]
+  },
+  "linux": {
+    "icon": "dist/assets/icons",
+    "target": ["AppImage"]
+  }
+}
