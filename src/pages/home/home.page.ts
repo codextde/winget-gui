@@ -10,6 +10,7 @@ import { CommandService } from '../../app/core/services/command.service';
 export class HomePage implements OnInit {
   packages;
   search = '';
+  currentSearch = '';
   constructor(
     private commandService: CommandService,
     private loadingCtrl: LoadingController,
@@ -60,5 +61,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  doSearch() {}
+  doSearch() {
+    this.currentSearch = this.search;
+  }
 }

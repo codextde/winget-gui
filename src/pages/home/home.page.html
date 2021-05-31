@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-virtual-scroll
+  <!-- <ion-virtual-scroll
     [items]="packages | filter: searchString"
     approxItemHeight="353px"
   >
@@ -33,5 +33,21 @@
         ></ion-card-content
       >
     </ion-card>
-  </ion-virtual-scroll>
+  </ion-virtual-scroll>-->
+
+  <ion-card *ngFor="let package of packages | filter: currentSearch">
+    <ion-card-header>
+      <ion-card-subtitle>{{package[1]}} - {{package[2]}}</ion-card-subtitle>
+      <ion-card-title>{{package[0]}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content
+      ><ion-button
+        size="small"
+        expand="block"
+        color="light"
+        (click)="install(package)"
+        >Install</ion-button
+      ></ion-card-content
+    >
+  </ion-card>
 </ion-content>
