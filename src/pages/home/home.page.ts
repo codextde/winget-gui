@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     const loading = await this.loadingCtrl.create();
     loading.present();
-    let result: any = await this.commandService.powershell('winget install');
+    let result: any = await this.commandService.powershell('winget list');
     result = result.split('----------------------------------').pop();
     result = result
       .split('\n')
