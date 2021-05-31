@@ -4,7 +4,7 @@
 
 ## Contributing
 
-Feel free to Contribut
+Feel free to Contribute
 
 ## Flutter
 
