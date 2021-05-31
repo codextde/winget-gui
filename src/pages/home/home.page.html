@@ -24,7 +24,7 @@
   ></ion-searchbar>
   <div *ngIf="mode == 'packages'">
     <ion-virtual-scroll
-      [items]="packages | filter: searchString"
+      [items]="packages | filter: currentSearch"
       approxItemHeight="353px"
     >
       <ion-card *virtualItem="let package; let itemBounds = bounds;">
@@ -47,7 +47,7 @@
 
   <div *ngIf="mode == 'installed'">
     <ion-virtual-scroll
-      [items]="installed | filter: searchString"
+      [items]="installed | filter: currentSearch"
       approxItemHeight="353px"
     >
       <ion-card *virtualItem="let package; let itemBounds = bounds;">
