@@ -26,7 +26,6 @@ jobs:
       - name: Install Dependencies
         run: npm install --no-optional
       - run: npm i electron-rebuild
-      - run: npm run rebuild
       - uses: olegtarasov/get-tag@v2.1
         id: tagName
       - name: Set Version Number
