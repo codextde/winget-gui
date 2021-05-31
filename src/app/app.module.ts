@@ -11,19 +11,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 // NG Translate
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import player from 'lottie-web';
 import { NgxElectronModule } from 'ngx-electron';
-import { LottieModule } from 'ngx-lottie';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
-export function playerFactory() {
-  return player;
 }
 
 @NgModule({
@@ -35,7 +29,6 @@ export function playerFactory() {
     HttpClientModule,
     CoreModule,
     AppRoutingModule,
-    LottieModule.forRoot({ player: playerFactory }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

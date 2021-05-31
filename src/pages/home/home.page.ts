@@ -32,9 +32,11 @@ export class HomePage implements OnInit {
       })
       .slice(1);
 
-    loading.dismiss();
     this.packages = result;
-    console.log(result);
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
   }
 
   async install(_package) {

@@ -1,5 +1,5 @@
-<div id="title-bar" class="action-bar" *ngIf="appService.actionBar">
-  <div class="app-actions" *ngIf="process && process.platform !== 'darwin'">
+<div id="title-bar" class="action-bar">
+  <div class="app-actions">
     <button (click)="electronService.minimize()">
       <ion-icon name="remove-outline"></ion-icon>
     </button>
@@ -45,17 +45,6 @@
         <div class="version">
           Version<small class="pl-2">{{ version }}</small>
         </div>
-        <!--<ion-list *ngIf="appPages">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" *ngIf="p.footer"
-              [routerLinkActive]="['active']">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{ p.title }}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>-->
       </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

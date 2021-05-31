@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActionSheetController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import 'webrtc-adapter';
 import { ElectronService } from '../../app/core/services/electron.service';
 import { SettingsService } from '../../app/core/services/settings.service';
 
