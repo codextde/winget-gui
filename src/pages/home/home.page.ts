@@ -1,9 +1,12 @@
+/* eslint-disable no-empty */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable no-async-promise-executor */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { CommandService } from '../../app/core/services/command.service';
-import { HttpClient } from '@angular/common/http';
 import { ElectronService } from '../../app/core/services/electron.service';
-import { download } from 'electron-dl';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -27,29 +30,58 @@ export class HomePage implements OnInit {
   segmentChanged($event) {
     this.mode = $event.detail.value;
   }
+
   async ngOnInit() {
-    const loading = await this.loadingCtrl.create();
+    const checkWinget: any = await this.commandService.powershell('winget');
+    if (!checkWinget.includes('Windows Package Manager')) {
+      await this.installWinGet();
+    }
+
+    await this.loadPackages();
+    await this.loadInstalled();
+  }
+
+  async installWinGet() {
+    return new Promise(async (resolve, reject) => {
+      const loading = await this.loadingCtrl.create({
+        message: 'Install WinGet ...',
+      });
+      loading.present();
+
+      const data = await this.http
+        .get('https://api.github.com/repos/microsoft/winget-cli/releases')
+        .toPromise();
+
+      const latest = data[0];
+      const asset: any = latest.assets.find((asset) =>
+        asset.name.endsWith('.appxbundle')
+      );
+
+      try {
+        const tmp = this.electronService.app.getPath('temp');
+
+        await this.commandService.powershell(
+          `Invoke-WebRequest -Uri ${asset.browser_download_url} -OutFile ${tmp}\\winget.appxbundle`
+        );
+        await this.commandService.powershell(
+          `Add-AppxPackage -Path "${tmp}\\winget.appxbundle"`
+        );
+        loading.dismiss();
+        resolve(true);
+      } catch (error) {
+        loading.dismiss();
+        reject(error);
+      }
+    });
+  }
+
+  async loadPackages() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Load All Packages ...',
+    });
     loading.present();
 
-    const data = await this.http
-      .get('https://api.github.com/repos/microsoft/winget-cli/releases')
-      .toPromise();
-
-    const latest = data[0];
-    const asset: any = latest.assets.find((asset) =>
-      asset.name.endsWith('.appxbundle')
-    );
-
     try {
-      const tmp = this.electronService.app.getPath('temp');
-
-      await this.commandService.powershell(
-        `Invoke-WebRequest -Uri ${asset.browser_download_url} -OutFile ${tmp}\\winget.appxbundle`
-      );
-      await this.commandService.powershell(
-        `Add-AppxPackage -Path "${tmp}\\winget.appxbundle"`
-      );
-
       let result: any = await this.commandService.powershell('winget install');
       result = result.split('----------------------------------').pop();
       result = result
@@ -66,16 +98,14 @@ export class HomePage implements OnInit {
       this.packages = result;
     } catch (error) {
     } finally {
-      setTimeout(() => {
-        loading.dismiss();
-      }, 5000);
+      loading.dismiss();
     }
-
-    this.loadInstalled();
   }
 
   async loadInstalled() {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingCtrl.create({
+      message: 'Load Installed Packages ...',
+    });
     loading.present();
 
     try {

@@ -3,25 +3,28 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title> </ion-title>
-  </ion-toolbar>
-  <ion-toolbar color="primary">
-    <ion-segment [value]="mode" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="packages">
-        <ion-label>Packages</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="installed">
-        <ion-label>Installed</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+    <div class="px-5">
+      <ion-segment
+        mode="ios"
+        [value]="mode"
+        (ionChange)="segmentChanged($event)"
+      >
+        <ion-segment-button value="packages">
+          <ion-label>Packages</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="installed">
+          <ion-label>Installed</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-searchbar
+  <!--<ion-searchbar
     [(ngModel)]="search"
     (keydown.enter)="doSearch()"
-  ></ion-searchbar>
+  ></ion-searchbar>-->
   <div *ngIf="mode == 'packages'">
     <ion-virtual-scroll
       [items]="packages | filter: currentSearch"

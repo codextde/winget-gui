@@ -154,6 +154,10 @@ ion-content {
   }
 }
 
+ion-segment-button {
+  text-transform: none;
+}
+
 ion-app {
   top: 30px !important;
   max-height: calc(100% - 30px);

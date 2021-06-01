@@ -15,7 +15,6 @@ import * as fs from 'fs';
 import * as powershell from 'node-powershell';
 import * as os from 'os';
 import * as path from 'path';
-import * as electronDl from 'electron-dl';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +34,6 @@ export class ElectronService {
   autoUpdater: typeof autoUpdater;
   screen: typeof screen;
   powershell: typeof powershell;
-  electronDl: typeof electronDl;
 
   get isElectron(): boolean {
     return !!(window && window.process && window.process.type);
@@ -58,7 +56,6 @@ export class ElectronService {
       this.fs = window.require('fs');
       this.path = window.require('path');
       this.powershell = window.require('node-powershell');
-      this.electronDl = window.require('electron-dl');
 
       this.remote.globalShortcut.register('Control+Shift+I', () => {
         return false;

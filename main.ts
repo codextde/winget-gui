@@ -7,9 +7,6 @@ import { autoUpdater } from 'electron-updater';
 
 import * as path from 'path';
 import * as url from 'url';
-import * as electronDl from 'electron-dl';
-
-electronDl();
 
 let type: string;
 if (process.platform === 'win32') {
@@ -85,17 +82,6 @@ async function createWindow(): Promise<BrowserWindow> {
       enableRemoteModule: true,
     },
   });
-  /*const isMac = process.platform === 'darwin';
-  const template = [
-    { id: '1', label: 'one' },
-    { id: '2', label: 'two' },
-    { id: '3', label: 'three' },
-    { id: '4', label: 'four' },
-  ];
-
-  const menu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(menu);
-*/
   const iconPath = path.join(__dirname, 'data/icon-no-bg-small.png');
 
   tray = new Tray(nativeImage.createFromPath(iconPath));

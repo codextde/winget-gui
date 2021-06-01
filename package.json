@@ -55,7 +55,6 @@
     "@types/simple-peer": "9.6.3",
     "build-number-generator": "1.0.0",
     "electron-clipboard-extended": "1.1.1",
-    "electron-dl": "3.2.1",
     "electron-settings": "4.0.2",
     "electron-updater": "4.3.9",
     "electron-util": "github:dertieran/electron-util",
