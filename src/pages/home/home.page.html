@@ -47,10 +47,10 @@
     </div>
   </ng-container>
 
-  <div *ngIf="mode == 'installed'">
+  <ng-container *ngIf="mode == 'installed'">
     <div
-      class="flex items-center justify-start cursor-pointer bg-white text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-4 py-2 my-2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-      *lazyFor="let package of installed | filter: currentSearch"
+      class="flex items-center justify-start cursor-pointer bg-white text-gray-700 rounded-md px-4 py-2 my-2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
+      *lazyFor="let package of installed  | filter: currentSearch ; trackBy:trackBy"
     >
       <div class="flex-grow font-medium pr-2">
         <h2 class="font-bold">{{package[0]}}</h2>
@@ -59,10 +59,18 @@
         </p>
       </div>
 
-      <div class="text-sm font-normal text-gray-500 tracking-wide">Update</div>
-      <div class="text-sm font-normal text-gray-500 tracking-wide">
+      <div
+        class="text-sm font-normal text-gray-500 tracking-wide p-2 hover:text-blue-400 hover:bg-blue-100 rounded-md"
+        (click)="install(package)"
+      >
+        Update
+      </div>
+      <div
+        class="text-sm font-normal text-gray-500 tracking-wide p-2 ml-3 hover:text-blue-400 hover:bg-blue-100 rounded-md"
+        (click)="uninstall(package)"
+      >
         Uninstall
       </div>
     </div>
-  </div>
+  </ng-container>
 </ion-content>

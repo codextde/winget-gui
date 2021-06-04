@@ -171,13 +171,7 @@ export class LazyForDirective implements DoCheck, OnInit {
       this.templateElem.nextSibling
     );
 
-    // If you want to use <li> elements
-    if (this.itemTagName.toLowerCase() === 'li') {
-      this.beforeListElem.style.listStyleType = 'none';
-      this.afterListElem.style.listStyleType = 'none';
-    }
-
-    this.firstUpdate = false;
+    // this.firstUpdate = false;
   }
 
   /**

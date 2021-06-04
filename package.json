@@ -60,6 +60,7 @@
     "electron-util": "github:dertieran/electron-util",
     "ng2-search-filter": "0.5.1",
     "ngx-electron": "2.2.0",
+    "ngx-lazy": "1.0.3",
     "node-powershell": "4.0.0",
     "os": "0.1.1",
     "path": "0.12.7",

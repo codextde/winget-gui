@@ -95,6 +95,7 @@ export class HomePage implements OnInit {
   }
 
   async loadPackages() {
+    this.packages = [];
     const loading = await this.loadingCtrl.create({
       message: 'Load All Packages ...',
     });
@@ -121,7 +122,12 @@ export class HomePage implements OnInit {
     }
   }
 
+  trackBy(index, item) {
+    return item[0];
+  }
+
   async loadInstalled() {
+    this.installed = [];
     const loading = await this.loadingCtrl.create({
       message: 'Load Installed Packages ...',
     });
