@@ -3,7 +3,7 @@
 /* eslint-disable no-async-promise-executor */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { CommandService } from '../../app/core/services/command.service';
 import { ElectronService } from '../../app/core/services/electron.service';
@@ -24,7 +24,8 @@ export class HomePage implements OnInit {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private http: HttpClient,
-    private electronService: ElectronService
+    private electronService: ElectronService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   async segmentChanged($event) {
@@ -203,6 +204,9 @@ export class HomePage implements OnInit {
   }
 
   doSearch() {
-    this.currentSearch = this.search;
+    setTimeout(() => {
+      this.currentSearch = this.search;
+      this.cdr.detectChanges();
+    }, 50);
   }
 }

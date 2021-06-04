@@ -53,7 +53,7 @@
         "
         *cdkVirtualFor="let package of packages | filter: currentSearch"
       >
-        <div class="flex-grow font-medium pr-2">
+        <div class="title flex-grow font-medium pr-2">
           <h2 class="font-bold">{{package[0]}}</h2>
           <p class="text-sm font-normal text-gray-500 tracking-wide">
             {{package[1]}} - {{package[2]}}
@@ -100,7 +100,7 @@
         *cdkVirtualFor="let package of installed  | filter: currentSearch ; trackBy:trackBy"
       >
         <div
-          class="font-medium pr-2 flex-grow"
+          class="title font-medium pr-2 flex-grow"
           style="max-width: calc(100% - 85px)"
         >
           <h2 class="font-bold">{{package[0]}}</h2>
