@@ -27,50 +27,126 @@
 
 <ion-content class="ion-padding">
   <ion-searchbar
+    class="p-0 mb-3"
     [(ngModel)]="search"
     (keydown.enter)="doSearch()"
   ></ion-searchbar>
   <ng-container *ngIf="mode == 'packages'">
-    <div
-      (click)="install(package)"
-      class="flex items-center justify-start cursor-pointer bg-white text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-4 py-2 my-2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-      *lazyFor="let package of packages | filter: currentSearch"
+    <cdk-virtual-scroll-viewport
+      itemSize="55"
+      minBufferPx="1200"
+      maxBufferPx="1200"
     >
-      <div class="flex-grow font-medium pr-2">
-        <h2 class="font-bold">{{package[0]}}</h2>
-        <p class="text-sm font-normal text-gray-500 tracking-wide">
-          {{package[1]}} - {{package[2]}}
-        </p>
-      </div>
+      <div
+        (click)="install(package)"
+        class="
+          item
+          flex
+          items-center
+          justify-start
+          hover:bg-gray-100
+          bg-white
+          text-gray-700
+          px-4
+          py-2
+          my-2
+        "
+        *cdkVirtualFor="let package of packages | filter: currentSearch"
+      >
+        <div class="flex-grow font-medium pr-2">
+          <h2 class="font-bold">{{package[0]}}</h2>
+          <p class="text-sm font-normal text-gray-500 tracking-wide">
+            {{package[1]}} - {{package[2]}}
+          </p>
+        </div>
 
-      <div class="text-sm font-normal text-gray-500 tracking-wide">Install</div>
-    </div>
+        <div
+          class="
+            cursor-pointer
+            text-sm
+            font-normal
+            text-gray-500
+            tracking-wide
+            p-2
+            hover:text-blue-400
+            hover:bg-blue-100
+            rounded-md
+          "
+        >
+          Install
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
   </ng-container>
 
   <ng-container *ngIf="mode == 'installed'">
-    <div
-      class="flex items-center justify-start cursor-pointer bg-white text-gray-700 rounded-md px-4 py-2 my-2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-      *lazyFor="let package of installed  | filter: currentSearch ; trackBy:trackBy"
+    <cdk-virtual-scroll-viewport
+      itemSize="55"
+      minBufferPx="1200"
+      maxBufferPx="1200"
     >
-      <div class="flex-grow font-medium pr-2">
-        <h2 class="font-bold">{{package[0]}}</h2>
-        <p class="text-sm font-normal text-gray-500 tracking-wide">
-          {{package[1]}} - {{package[2]}}
-        </p>
-      </div>
+      <div
+        class="
+          item
+          flex
+          items-center
+          hover:bg-gray-100
+          bg-white
+          text-gray-700
+          px-4
+          py-2
+          my-2
+        "
+        *cdkVirtualFor="let package of installed  | filter: currentSearch ; trackBy:trackBy"
+      >
+        <div
+          class="font-medium pr-2 flex-grow"
+          style="max-width: calc(100% - 85px)"
+        >
+          <h2 class="font-bold">{{package[0]}}</h2>
+          <p class="text-sm font-normal text-gray-500 tracking-wide">
+            {{package[1]}} - {{package[2]}}
+          </p>
+        </div>
 
-      <div
-        class="text-sm font-normal text-gray-500 tracking-wide p-2 hover:text-blue-400 hover:bg-blue-100 rounded-md"
-        (click)="install(package)"
-      >
-        Update
+        <div class="flex flex-col items-end">
+          <div
+            class="
+              cursor-pointer
+              text-sm
+              font-normal
+              text-gray-500
+              tracking-wide
+              px-2
+              py-1
+              hover:text-blue-400
+              hover:bg-blue-100
+              rounded-md
+            "
+            (click)="install(package)"
+          >
+            Update
+          </div>
+          <div
+            class="
+              cursor-pointer
+              text-sm
+              font-normal
+              text-gray-500
+              tracking-wide
+              px-2
+              py-1
+              ml-3
+              hover:text-blue-400
+              hover:bg-blue-100
+              rounded-md
+            "
+            (click)="uninstall(package)"
+          >
+            Uninstall
+          </div>
+        </div>
       </div>
-      <div
-        class="text-sm font-normal text-gray-500 tracking-wide p-2 ml-3 hover:text-blue-400 hover:bg-blue-100 rounded-md"
-        (click)="uninstall(package)"
-      >
-        Uninstall
-      </div>
-    </div>
+    </cdk-virtual-scroll-viewport>
   </ng-container>
 </ion-content>

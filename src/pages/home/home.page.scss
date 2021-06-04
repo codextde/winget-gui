@@ -2,18 +2,19 @@ ion-content {
   //--background: #eceef3;
   --background: #18181b;
 }
-
-.box {
-  border: 2px solid #4b5563;
+cdk-virtual-scroll-viewport {
+  height: calc(100vh - 180px);
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 5px;
 }
-ion-card {
-  background: var(--ion-color-primary);
-  ion-card-title {
-    margin-top: 0;
-    color: #fff;
+::ng-deep {
+  .cdk-virtual-scroll-content-wrapper {
+    right: 0;
   }
-  ion-card-subtitle {
-    color: #fff;
-    opacity: 0.6;
-  }
+}
+.item {
+  height: 55px;
+  width: 100%;
 }

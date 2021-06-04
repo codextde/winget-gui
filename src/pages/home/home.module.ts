@@ -12,6 +12,7 @@ import { NumberDirective } from './number.directive';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LazyForDirective } from './lazyFor.directive';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { LazyForDirective } from './lazyFor.directive';
     MatButtonModule,
     TranslateModule,
     Ng2SearchPipeModule,
+    ScrollingModule,
   ],
   declarations: [HomePage, NumberDirective, LazyForDirective],
 })
