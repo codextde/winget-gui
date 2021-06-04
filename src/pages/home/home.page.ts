@@ -27,18 +27,37 @@ export class HomePage implements OnInit {
     private electronService: ElectronService
   ) {}
 
-  segmentChanged($event) {
+  async segmentChanged($event) {
     this.mode = $event.detail.value;
+    await this.refresh();
+  }
+
+  async refresh() {
+    if (this.mode == 'installed') {
+      await this.loadInstalled();
+    }
+    if (this.mode == 'packages') {
+      await this.loadPackages();
+    }
   }
 
   async ngOnInit() {
-    const checkWinget: any = await this.commandService.powershell('winget');
-    if (!checkWinget.includes('Windows Package Manager')) {
-      await this.installWinGet();
-    }
+    this.startUp();
+  }
 
-    await this.loadPackages();
-    await this.loadInstalled();
+  async startUp() {
+    try {
+      const checkWinget: any = await this.commandService.powershell('winget');
+      if (!checkWinget.includes('Windows Package Manager')) {
+        await this.installWinGet();
+      }
+
+      await this.refresh();
+    } catch (error) {
+      await this.installWinGet();
+      await this.startUp();
+      console.log('checkWinget error', error);
+    }
   }
 
   async installWinGet() {

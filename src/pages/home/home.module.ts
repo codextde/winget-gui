@@ -11,6 +11,7 @@ import { HomePage } from './home.page';
 import { NumberDirective } from './number.directive';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LazyForDirective } from './lazyFor.directive';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     TranslateModule,
     Ng2SearchPipeModule,
   ],
-  declarations: [HomePage, NumberDirective],
+  declarations: [HomePage, NumberDirective, LazyForDirective],
 })
 export class HomePageModule {}
