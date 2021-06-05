@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.startUp();
+    await this.startUp();
   }
 
   async startUp() {
@@ -208,5 +208,29 @@ export class HomePage implements OnInit {
       this.currentSearch = this.search;
       this.cdr.detectChanges();
     }, 50);
+  }
+
+  async upgradeAll() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Upgrading ...',
+    });
+    try {
+      loading.present();
+      await this.commandService.powershell(`winget upgrade --all`);
+
+      const toast = await this.toastCtrl.create({
+        duration: 5000,
+        message: 'Upgrading done!',
+      });
+      toast.present();
+    } catch (err) {
+      const toast = await this.toastCtrl.create({
+        duration: 5000,
+        message: 'Upgrading failed!',
+      });
+      toast.present();
+    } finally {
+      loading.dismiss();
+    }
   }
 }
