@@ -14,8 +14,29 @@
     "allowlist": {
       "all": false,
       "shell": {
-        "all": false,
-        "open": true
+        "all": true,
+        "execute": true,
+        "sidecar": true,
+        "open": true,
+        "scope": [
+          {
+            "name": "ipconfig",
+            "cmd": "ipconfig"
+          },
+          {
+            "name": "powershell",
+            "cmd": "powershell",
+            "args": true
+          },
+          {
+            "name": "cmd",
+            "cmd": "cmd"
+          },
+          {
+            "name": "sh",
+            "cmd": "sh"
+          }
+        ]
       }
     },
     "bundle": {
@@ -63,7 +84,7 @@
         "height": 600,
         "resizable": true,
         "title": "winget-gui",
-        "width": 800
+        "width": 600
       }
     ]
   }

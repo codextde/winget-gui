@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
+    "tauri:dev": "tauri dev",
     "ng": "ng",
     "dev": "ng serve --port 1420",
     "build": "ng build",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.2.0",
     "@angular/animations": "^15.0.4",
     "@angular/common": "^15.0.4",
     "@angular/compiler": "^15.0.4",
@@ -20,15 +20,23 @@
     "@angular/platform-browser": "^15.0.4",
     "@angular/platform-browser-dynamic": "^15.0.4",
     "@angular/router": "^15.0.4",
+    "@ngneat/hot-toast": "^4.1.0",
+    "@ngneat/overview": "^3.0.4",
+    "@tauri-apps/api": "^1.2.0",
+    "autoprefixer": "^10.4.13",
+    "daisyui": "^2.46.0",
+    "ng2-search-filter": "^0.5.1",
+    "postcss": "^8.4.20",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^3.2.4",
     "tslib": "^2.4.1",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.2.2",
     "@angular-devkit/build-angular": "^15.0.4",
     "@angular/cli": "~15.0.4",
     "@angular/compiler-cli": "^15.0.4",
+    "@tauri-apps/cli": "^1.2.2",
     "typescript": "~4.8.0"
   }
 }
