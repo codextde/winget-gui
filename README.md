@@ -1,7 +1,12 @@
-# Tauri + Angular
+# winget gui + installer
 
-This template should help get you started developing with Tauri and Angular.
+Simple 2mb winget GUI 
 
-## Recommended IDE Setup
+* Only 2mb Download Size
+* Update / Uninstall / Install
+* Search
+* Winget Autoinstaller
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer) + [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
+[Download](https://github.com/codextde/winget-gui/releases/latest)
+
+![image](https://user-images.githubusercontent.com/19570043/209976748-a20bbfdc-d3c6-4fa6-97dd-ceca14eb7a23.png)
