@@ -161,7 +161,9 @@ export class AppComponent {
     this.packages = [];
 
     try {
-      let result: any = await this.powershell("winget search -q=");
+      let result: any = await this.powershell(
+        "winget search -q= --accept-source-agreements"
+      );
       result = result.split("----------------------------------").pop();
       result = result
         .split("\n")
