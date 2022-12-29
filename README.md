@@ -6,6 +6,7 @@ Simple 2mb winget GUI
 * Update / Uninstall / Install
 * Search
 * Winget Autoinstaller
+* Open Source / MIT
 
 [Download](https://github.com/codextde/winget-gui/releases/latest)
 
