@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "winget-gui",
-    "version": "0.0.0"
+    "version": "0.0.17"
   },
   "tauri": {
     "allowlist": {
@@ -20,21 +20,9 @@
         "open": true,
         "scope": [
           {
-            "name": "ipconfig",
-            "cmd": "ipconfig"
-          },
-          {
             "name": "powershell",
             "cmd": "powershell",
             "args": true
-          },
-          {
-            "name": "cmd",
-            "cmd": "cmd"
-          },
-          {
-            "name": "sh",
-            "cmd": "sh"
           }
         ]
       }
@@ -56,13 +44,6 @@
       ],
       "identifier": "de.codext.winget-gui",
       "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
       "resources": [],
       "shortDescription": "",
       "targets": "all",
@@ -83,7 +64,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "winget-gui",
+        "title": "Winget GUI",
         "width": 600
       }
     ]

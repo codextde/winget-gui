@@ -5,7 +5,15 @@
 html,
 body,
 :root {
-  @apply bg-slate-900;
+  @apply bg-slate-200;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body,
+  :root {
+    @apply bg-slate-900;
+  }
 }
 
 @keyframes hotToastEnterAnimationNegative {
